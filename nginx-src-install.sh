@@ -6,7 +6,7 @@ ngxvn="1.7.1"
 # run this script as root user
 # stuff needed to build from source
 #apt-get install libpcre3-dev build-essential libssl-dev
-#yum install pcre-devel zlib-devel openssl-devel
+#yum install pcre-devel zlib-devel openssl-devel gcc gcc-c++ make openssl-devel libxml2 libxml2-devel libxslt libxslt-devel
 
  
 # get the nginx source
@@ -29,8 +29,8 @@ mkdir /opt/nginxmodules
 
 #...create init.d script
 #vi /etc/init.d/nginx # edit the DEAMON with the correct new path, which is now /usr/local/nginx/sbin/nginx
-wget https://raw.githubusercontent.com/dev-ace/nginx-src-install/master/nginx-initd-script
-cp nginx-src-initd-script /etc/init.d/nginx
+wget https://raw.githubusercontent.com/fuga-dev/nginx-src-install/master/nginx-initd-script
+cp nginx-initd-script /etc/init.d/nginx
 chmod 755 /etc/init.d/nginx
 # ...testing area end...
 ###############################################################
@@ -44,7 +44,7 @@ cd /opt/nginx*/
   --lock-path=/var/lock/nginx.lock \
   --http-log-path=/var/log/nginx/access.log \
  #--with-http_dav_module \
-  --http-client-body-temp-path=/var/lib/nginx/body \
+ #--http-client-body-temp-path=/var/lib/nginx/body \
   --http-proxy-temp-path=/var/lib/nginx/proxy \
   --with-http_stub_status_module \
   --http-fastcgi-temp-path=/var/lib/nginx/fastcgi \

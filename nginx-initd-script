@@ -11,6 +11,7 @@
  
 # Source function library.
 . /etc/rc.d/init.d/functions
+#. /lib/lsb/init-functions
  
 # Source networking configuration.
 . /etc/sysconfig/network
