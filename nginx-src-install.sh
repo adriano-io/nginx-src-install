@@ -54,4 +54,6 @@ cd /opt/nginx*/
 make
 make install
 
+alias nginx='/usr/local/nginx/sbin/nginx'
+
 /etc/init.d/nginx start
