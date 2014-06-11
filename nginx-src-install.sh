@@ -6,7 +6,7 @@ ngxvn="1.7.1"
 # run this script as root user
 # stuff needed to build from source
 #apt-get install libpcre3-dev build-essential libssl-dev
-#yum install pcre-devel zlib-devel openssl-devel gcc gcc-c++ make openssl-devel libxml2 libxml2-devel libxslt libxslt-devel
+#yum install -y pcre-devel zlib-devel openssl-devel gcc gcc-c++ make openssl-devel libxml2 libxml2-devel libxslt libxslt-devel
 
  
 # get the nginx source
@@ -54,6 +54,9 @@ cd /opt/nginx*/
 make
 make install
 
-alias nginx='/usr/local/nginx/sbin/nginx'
+
+#added alias for testing
+echo "alias nginx='/usr/local/nginx/sbin/nginx'" >> ~/.bashrc
+. ~/.bashrc
 
 /etc/init.d/nginx start
