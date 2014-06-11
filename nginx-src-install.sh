@@ -55,8 +55,10 @@ make
 make install
 
 
-#added alias for testing
-echo "alias nginx='/usr/local/nginx/sbin/nginx'" >> ~/.bashrc
-. ~/.bashrc
+#added alias/path for testing
+export BASE=/usr/local/nginx/sbin
+export PATH=$PATH:$BASE
+#echo "alias nginx='/usr/local/nginx/sbin/nginx'" >> ~/.bashrc
+#. ~/.bashrc
 
 /etc/init.d/nginx start
