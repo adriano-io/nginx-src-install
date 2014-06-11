@@ -13,3 +13,8 @@ wget https://raw.githubusercontent.com/dev-ace/nginx-src-install/master/nginx-sr
 Step 2)
 source nginx-src-install.sh
 
+
+
+===============================
+
+ansiable coming soon...
