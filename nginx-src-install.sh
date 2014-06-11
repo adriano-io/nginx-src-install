@@ -1,11 +1,13 @@
 #!/bin/bash
 
-#nginx version number 
+# nginx version number 
 ngxvn="1.7.1"
 
 # run this script as root user
 # stuff needed to build from source
-apt-get install libpcre3-dev build-essential libssl-dev
+#apt-get install libpcre3-dev build-essential libssl-dev
+#yum install pcre-devel zlib-devel openssl-devel
+
  
 # get the nginx source
 cd /opt/
@@ -16,13 +18,20 @@ tar -zxvf nginx*
 # ...testing area start...
 # we'll put the source for nginx modules in here
 mkdir /opt/nginxmodules
-cd /opt/nginxmodules
 
 #...below is not working with nginx 1.7.1...
+#cd /opt/nginxmodules
+
 # get the source for the Headers More module - see http://wiki.nginx.org/HttpHeadersMoreModule & http://articles.slicehost.com/2008/5/13/ubuntu-hardy-installing-nginx-from-source
 #wget --no-check-certificate http://github.com/agentzh/headers-more-nginx-module/tarball/v0.14
 #tar -zxvf v0.14
 #mv agentzh-headers-more-nginx-module-2cbbc15 headers-more
+
+#...create init.d script
+#vi /etc/init.d/nginx # edit the DEAMON with the correct new path, which is now /usr/local/nginx/sbin/nginx
+wget https://raw.githubusercontent.com/dev-ace/nginx-src-install/master/nginx-initd-script
+cp nginx-src-initd-script /etc/init.d/nginx
+chmod 755 /etc/init.d/nginx
 # ...testing area end...
 ###############################################################
 cd /opt/nginx*/
@@ -34,7 +43,7 @@ cd /opt/nginx*/
   --pid-path=/var/run/nginx.pid \
   --lock-path=/var/lock/nginx.lock \
   --http-log-path=/var/log/nginx/access.log \
-  --with-http_dav_module \
+ #--with-http_dav_module \
   --http-client-body-temp-path=/var/lib/nginx/body \
   --http-proxy-temp-path=/var/lib/nginx/proxy \
   --with-http_stub_status_module \
@@ -44,6 +53,5 @@ cd /opt/nginx*/
  
 make
 make install
-vi /etc/init.d/nginx # edit the DEAMON with the correct new path, which is now /usr/local/nginx/sbin/nginx
- 
+
 /etc/init.d/nginx start
