@@ -18,14 +18,20 @@ tar -zxvf nginx*
 # ...testing area start...
 # we'll put the source for nginx modules in here
 mkdir /opt/nginxmodules
+cd /opt/nginxmodules
+
 
 #...below is not working with nginx 1.7.1...
-#cd /opt/nginxmodules
 
 # get the source for the Headers More module - see http://wiki.nginx.org/HttpHeadersMoreModule & http://articles.slicehost.com/2008/5/13/ubuntu-hardy-installing-nginx-from-source
 #wget --no-check-certificate http://github.com/agentzh/headers-more-nginx-module/tarball/v0.14
 #tar -zxvf v0.14
 #mv agentzh-headers-more-nginx-module-2cbbc15 headers-more
+
+# get the source for the ngx_pagespeed module - see https://github.com/pagespeed/ngx_pagespeed
+wget --no-check-certificate https://github.com/pagespeed/ngx_pagespeed/tarball/v1.8.31.3-beta
+tar -zxvf v1.8.31.3-beta
+mv v1.8.31.3-beta ngx_pagespeed
 
 #...create init.d script
 #vi /etc/init.d/nginx # edit the DEAMON with the correct new path, which is now /usr/local/nginx/sbin/nginx
@@ -50,6 +56,8 @@ cd /opt/nginx*/
   --http-fastcgi-temp-path=/var/lib/nginx/fastcgi \
   --with-debug \
   #--add-module=/opt/nginxmodules/headers-more
+  --add-module=/opt/nginxmodules/ngx_pagespeed
+ 
  
 make
 make install
